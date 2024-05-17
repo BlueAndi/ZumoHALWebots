@@ -1,6 +1,6 @@
 {
     "name": "ZumoHALWebots",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Zumo C++ hardware abstraction layer for the Webots simulation.",
     "authors": [{
         "name": "Andreas Merkle",
