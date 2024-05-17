@@ -117,6 +117,8 @@ package "HAL Webots" as hal {
     class ProximitySensors
     class Sender <<unused>>
     class Settings
+    class SimTime
+    class WebotsSerialDrv
 
     iButton <|... ButtonA: <<realize>>
     iButton <|... ButtonB: <<realize>>
@@ -133,21 +135,27 @@ package "HAL Webots" as hal {
     iProximitySensors <|... ProximitySensors: <<realize>>
     iSender <|... Sender: <<realize>>
     iSettings <|... Settings: <<realize>>
+
+    ButtonA --> Keyboard
+    ButtonB --> Keyboard
+    ButtonC --> Keyboard
 }
 
 package "Webots library" as webotsLib {
     
-    class Zumo32U4ButtonA
-    class Zumo32U4ButtonB
-    class Zumo32U4ButtonC
-    class Zumo32U4Buzzer
-    class Zumo32U4LCD
-    class Zumo32U4Encoders
-    class Zumo32U4IMU
-    class Zumo32U4 <<Functions>>
-    class Zumo32U4LineSensors
-    class Zumo32U4Motors
-    class Zumo32U4ProximitySensors
+    class "Keyboard" as webotsKeyboard
+    class "Speaker" as webotsSpeaker
+    class "Display" as webotsDisplay
+    class "PositionSensor" as webotsPositionSensor
+    class "Accelerometer" as webotsAccelerometer
+    class "Gyro" as webotsGyro
+    class "Compass" as webotsCompass
+    class "LED" as webotsLed
+    class "Emitter" as webotsEmitter
+    class "DistanceSensor" as webotsDistanceSensor
+    class "Motor" as webotsMotor
+    class "Robot" as webotsRobot
+    class "Receiver" as webotsReceiver
 }
 
 note bottom of webotsLib
@@ -163,21 +171,26 @@ halInterfaces -[hidden]-- hal
 hal -[hidden]-- webotsLib
 webotsLib -[hidden]r- arduinoJson
 
-ButtonA *---> Zumo32U4ButtonA
-ButtonB *---> Zumo32U4ButtonB
-ButtonC *---> Zumo32U4ButtonC
-Buzzer *---> Zumo32U4Buzzer
-Display *---> Zumo32U4LCD
-Encoders *---> Zumo32U4Encoders
-IMU *---> Zumo32U4IMU
-LedRed ...> Zumo32U4: <<use>>
-LedYellow ...> Zumo32U4: <<use>>
-LedGreen ...> Zumo32U4: <<use>>
-LineSensors *---> Zumo32U4LineSensors
-Motors *---> Zumo32U4Motors
-ProximitySensors ...> Zumo32U4ProximitySensors: <<use>>
+Keyboard ----> webotsKeyboard
+Buzzer ----> webotsSpeaker
+Display ----> webotsDisplay
+Encoders ----> webotsPositionSensor
+IMU ----> webotsAccelerometer
+IMU ----> webotsGyro
+IMU ----> webotsCompass
+LedGreen ----> webotsLed
+LedRed ----> webotsLed
+LedYellow ----> webotsLed
+LineSensors ----> webotsEmitter
+LineSensors ----> webotsDistanceSensor
+Motors *----> "2" webotsMotor
+ProximitySensors *----> "2" webotsDistanceSensor
+Sender ----> webotsEmitter
+SimTime ----> webotsRobot
+WebotsSerialDrv ----> webotsEmitter
+WebotsSerialDrv ----> webotsReceiver
 
-Settings ...> DynamicJsonDocument: <<use>>
+Settings ....> DynamicJsonDocument: <<use>>
 
 note bottom of hal
     The hardware abstraction layer contains
