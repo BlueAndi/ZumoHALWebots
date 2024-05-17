@@ -1,5 +1,5 @@
 {
-    "name": "ZumoHALATmega32u4",
+    "name": "ZumoHALWebots",
     "version": "0.1.0",
     "description": "Zumo C++ hardware abstraction layer for the Webots simulation.",
     "authors": [{
