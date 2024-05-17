@@ -1,0 +1,26 @@
+@startuml Principle
+
+package "Application" {
+    class "Aaaa" as Aaaa
+}
+
+package "HAL Interfaces" {
+    interface "IXxxx" as iXxxx
+}
+
+package "HAL Webots" {
+    class "Xxxx" as XxxxMcu
+    
+    note bottom of XxxxMcu
+        MCU specific implementation.
+    end note
+}
+
+Aaaa ...> iXxxx: <<use>>
+iXxxx <|... XxxxMcu: <<realize>>
+
+note top of Aaaa
+    Target independed application.
+end note
+
+@enduml

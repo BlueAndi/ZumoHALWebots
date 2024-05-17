@@ -1,0 +1,6 @@
+@mainpage Manual
+
+@defgroup HALSim Hardware Abstraction Layer
+The concrete hardware abstraction layer for the Pololu Zumo32u4 robot in the Webots simulation.
+@{
+@}

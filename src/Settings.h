@@ -28,7 +28,7 @@
  * @brief  Settings realization
  * @author Andreas Merkle <web@blue-andi.de>
  *
- * @addtogroup HALTarget
+ * @addtogroup HALSim
  *
  * @{
  */
