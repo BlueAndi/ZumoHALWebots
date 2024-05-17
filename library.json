@@ -13,6 +13,10 @@
         "owner": "BlueAndi",
         "name": "ZumoHALInterfaces",
         "version": "~0.1.1"
+    }, {
+        "owner": "bblanchon",
+        "name": "ArduinoJson",
+        "version": "~6.21.4"
     }],
     "frameworks": "*",
     "platforms": "*"
