@@ -1,0 +1,19 @@
+{
+    "name": "ZumoHALATmega32u4",
+    "version": "0.1.0",
+    "description": "Zumo C++ hardware abstraction layer for the Webots simulation.",
+    "authors": [{
+        "name": "Andreas Merkle",
+        "email": "web@blue-andi.de",
+        "url": "https://github.com/BlueAndi",
+        "maintainer": true
+    }],
+    "license": "MIT",
+    "dependencies": [{
+        "owner": "BlueAndi",
+        "name": "ZumoHALInterfaces",
+        "version": "0.1.0"
+    }],
+    "frameworks": "*",
+    "platforms": "*"
+}
