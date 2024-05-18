@@ -39,7 +39,7 @@ PIO_ENV_NAME = env["PIOENV"] # pylint: disable=undefined-variable
 PIO_ENV_LIBDEPS_DIR = env["PROJECT_LIBDEPS_DIR"] + "/" + PIO_ENV_NAME # pylint: disable=undefined-variable
 BUILD_DIR = env["PROJECT_BUILD_DIR"] + "/" + PIO_ENV_NAME # pylint: disable=undefined-variable
 DST_PATH = BUILD_DIR + "/sounds"
-SOUNDS_FOLDER = PIO_ENV_LIBDEPS_DIR + "/sounds"
+SOUNDS_FOLDER = PIO_ENV_LIBDEPS_DIR + "/ZumoHALWebots/sounds"
 
 ################################################################################
 # Classes
