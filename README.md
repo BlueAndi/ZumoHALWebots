@@ -57,6 +57,7 @@ See details of the Webots library classes in the [Webots reference manual](https
 * **REQ-2** The ```SimTime::step()``` shall be called once before the ```Arduino::setup()``` is called.
 * **REQ-3** The ```SimTime::step()``` shall be called once before the ```Arduino::loop()``` is called periodically.
 * **REQ-4** The ```Keyboard::getPressedButtons()``` shall be called once before the ```Arduino::loop()``` is called periodically.
+* **REQ-7** The application functions, which are running in the ```Arduino::loop()``` shall not block (cooperative behaviour).
 
 ## Buttons
 * **REQ-5** The application shall never wait in an loop until a button gets released or pressed.
