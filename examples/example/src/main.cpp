@@ -61,7 +61,7 @@ static App gApplication;
  * Initialize the system.
  * This function is called once during startup.
  */
-extern void setup() // cppcheck-suppress unusedFunction
+void setup() // cppcheck-suppress unusedFunction
 {
     gApplication.setup();
 }
@@ -70,7 +70,7 @@ extern void setup() // cppcheck-suppress unusedFunction
  * Main program loop.
  * This function is called cyclic.
  */
-extern void loop() // cppcheck-suppress unusedFunction
+void loop() // cppcheck-suppress unusedFunction
 {
     gApplication.loop();
 }
