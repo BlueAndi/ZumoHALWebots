@@ -12,6 +12,10 @@ Hardware abstraction layer for the Pololu Zumo robot (see https://www.pololu.com
   * [The Principle](#the-principle)
   * [Detail](#detail)
 * [How to integrate the library?](#how-to-integrate-the-library)
+* [Requirements to your application](#requirements-to-your-application)
+  * [General](#general)
+  * [Buttons](#buttons)
+  * [Buzzer](#buzzer)
 * [Used Libraries](#used-libraries)
 * [Issues, Ideas And Bugs](#issues-ideas-and-bugs)
 * [License](#license)
@@ -45,6 +49,23 @@ See details of the Webots library classes in the [Webots reference manual](https
     * ```copy_webots_shared_libs.py```: Copies the Webots shared libraries to the local platformio environment specific build folder ```.pio/build/<environment>``` as post-build step. They are required by the exectuable.
 3. Integrate the following main flow to your ```main.cpp```.
     ![MainGenericFlow](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/BlueAndi/ZumoHALWebots/master/doc/uml/MainGenericFlow.plantuml)
+4. Consider the [requirements to your application](#requirements-to-your-application).
+
+# Requirements to your application
+## General
+* **REQ-1** The ```SimTime::step()``` shall be called for one single simulation time step.
+* **REQ-2** The ```SimTime::step()``` shall be called once before the ```Arduino::setup()``` is called.
+* **REQ-3** The ```SimTime::step()``` shall be called once before the ```Arduino::loop()``` is called periodically.
+* **REQ-4** The ```Keyboard::getPressedButtons()``` shall be called once before the ```Arduino::loop()``` is called periodically.
+
+## Buttons
+* **REQ-5** The application shall never wait in an loop until a button gets released or pressed.
+
+## Buzzer
+* **REQ-6** If the application waits until ```Buzzer::isPlaying()``` returns true, the application shall call ```Buzzer::process()``` and ```delay(1U)``` in the loop.
+    * **INFO**:
+        1. The sound is stopped by the ```Buzzer::process()```. Without stopping it, the ```Buzzer::isPlaying()``` will always return true.
+        2. The simulation time must be stepped forward, otherwise during ```Buzzer::process()``` the sound won't stop. The workaround is here to use a ```delay()``` which internally ticks the simulation time.
 
 # Used Libraries
 

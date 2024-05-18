@@ -8,6 +8,7 @@ note right: Ensures that all sensors will provide already data in setup().
 :Call the Arduino setup().;
 while (Is simulation time step successful?) is (true)
     :Handle keyboard to detect button changes.;
+    note right: Cooperative! Never wait in the loop()\nvia loop for any button changes.
     :Call the Arduino loop().;
 endwhile (no)
 stop
