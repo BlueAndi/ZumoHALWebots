@@ -11,6 +11,7 @@ Hardware abstraction layer for the Pololu Zumo robot (see https://www.pololu.com
 * [Architecture](#architecture)
   * [The Principle](#the-principle)
   * [Detail](#detail)
+* [How to integrate the library?](#how-to-integrate-the-library)
 * [Used Libraries](#used-libraries)
 * [Issues, Ideas And Bugs](#issues-ideas-and-bugs)
 * [License](#license)
@@ -26,12 +27,30 @@ Hardware abstraction layer for the Pololu Zumo robot (see https://www.pololu.com
 
 See details of the Webots library classes in the [Webots reference manual](https://cyberbotics.com/doc/reference/nodes-and-api-functions).
 
+# How to integrate the library?
+1. Add it to the _platformio.ini_ in your environment to the _lib\_deps_ section:
+    ```
+    lib_deps =
+        BlueAndi/ZumoHALWebots @ ~0.1.1
+    ```
+2. Add to your platformio environment the following scripts.
+    ```
+    extra_scripts =
+        pre:$PROJECT_LIBDEPS_DIR/$PIOENV/ZumoHALWebots/scripts/create_webots_library.py
+        pre:$PROJECT_LIBDEPS_DIR/$PIOENV/ZumoHALWebots/scripts/copy_sounds.py
+        post:$PROJECT_LIBDEPS_DIR/$PIOENV/ZumoHALWebots/scripts/copy_webots_shared_libs.py
+    ```
+    * ```create_webots_library.py```: Generates the Webots library under the ```/lib``` folder, derived from your local Webots installation.
+    * ```copy_sounds.py```: Copies the sound files used for sound generation.
+    * ```copy_webots_shared_libs.py```: Copies the Webots shared libraries to the local platformio environment specific build folder ```.pio/build/<environment>``` as post-build step. They are required by the exectuable.
+
 # Used Libraries
 
-| Library                                                 | Description                                                      | License    |
-| ------------------------------------------------------- | ---------------------------------------------------------------- | ---------- |
-| [ArduinoJson](https://github.com/bblanchon/ArduinoJson) | JSON library for Arduino and embedded C++. Simple and efficient. | MIT        |
-| [Webots](https://github.com/cyberbotics/webots) | Webots physical simulation C++ API.                                      | Apache 2.0 |
+| Library                                                            | Description                                                      | License    |
+| ------------------------------------------------------------------ | ---------------------------------------------------------------- | ---------- |
+| [ArduinoJson](https://github.com/bblanchon/ArduinoJson)            | JSON library for Arduino and embedded C++. Simple and efficient. | MIT        |
+| [Webots](https://github.com/cyberbotics/webots)                    | Webots physical simulation C++ API.                              | Apache 2.0 |
+| [ZumoHALInterfaces](https://github.com/BlueAndi/ZumoHALInterfaces) | The Zumo C++ HAL interfaces.                                     | MIT        |
 
 # Issues, Ideas And Bugs
 If you have further ideas or you found some bugs, great! Create a [issue](https://github.com/BlueAndi/ZumoHALWebots/issues) or if you are able and willing to fix it by yourself, clone the repository and create a pull request.
