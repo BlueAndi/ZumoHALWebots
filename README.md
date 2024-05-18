@@ -37,7 +37,13 @@ See details of the Webots library classes in the [Webots reference manual](https
     lib_deps =
         BlueAndi/ZumoHALWebots @ ~0.1.1
     ```
-2. Add to your platformio environment the following scripts.
+2. Add the header include search directories to the build flags.
+    ```
+    build_flags =
+        -I./lib/Webots/include/c
+        -I./lib/Webots/include/cpp
+    ```
+3. Add to your platformio environment the following scripts.
     ```
     extra_scripts =
         pre:$PROJECT_LIBDEPS_DIR/$PIOENV/ZumoHALWebots/scripts/create_webots_library.py
@@ -47,9 +53,9 @@ See details of the Webots library classes in the [Webots reference manual](https
     * ```create_webots_library.py```: Generates the Webots library under the ```/lib``` folder, derived from your local Webots installation.
     * ```copy_sounds.py```: Copies the sound files used for sound generation.
     * ```copy_webots_shared_libs.py```: Copies the Webots shared libraries to the local platformio environment specific build folder ```.pio/build/<environment>``` as post-build step. They are required by the exectuable.
-3. Integrate the following main flow to your ```main.cpp```.
+4. Integrate the following main flow to your ```main.cpp```.
     ![MainGenericFlow](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/BlueAndi/ZumoHALWebots/master/doc/uml/MainGenericFlow.plantuml)
-4. Consider the [requirements to your application](#requirements-to-your-application).
+5. Consider the [requirements to your application](#requirements-to-your-application).
 
 # Requirements to your application
 ## General
