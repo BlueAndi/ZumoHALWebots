@@ -12,6 +12,7 @@ Hardware abstraction layer for the Pololu Zumo robot (see https://www.pololu.com
   * [The Principle](#the-principle)
   * [Detail](#detail)
 * [How to integrate the library?](#how-to-integrate-the-library)
+  * [Example with recommended flow](#example-with-recommended-flow)
 * [Requirements to your application](#requirements-to-your-application)
   * [General](#general)
   * [Buttons](#buttons)
@@ -56,6 +57,11 @@ See details of the Webots library classes in the [Webots reference manual](https
 4. Integrate the following main flow to your ```main.cpp```.
     ![MainGenericFlow](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/BlueAndi/ZumoHALWebots/master/doc/uml/MainGenericFlow.plantuml)
 5. Consider the [requirements to your application](#requirements-to-your-application).
+
+## Example with recommended flow
+See [minimal example](./examples/example/).
+
+![ExampleMainFlow](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/BlueAndi/ZumoHALWebots/master/doc/uml/ExampleMainFlow.plantuml)
 
 # Requirements to your application
 ## General

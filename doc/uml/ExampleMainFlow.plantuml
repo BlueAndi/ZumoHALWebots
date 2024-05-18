@@ -1,0 +1,50 @@
+@startuml ExampleMainFlow
+
+participant "main" as main
+participant "Arduino" as arduino
+participant "Application" as app
+
+autoactivate on
+
+-> main: main()
+
+    note over main,arduino
+        Forward callbacks to Arduino library, which are
+        used to retrieve the system tick for millis() and
+        delay while stepping the simulation time.
+    end note
+
+    main -> arduino: Arduino::setup(getSystemTick, systemDelay)
+        arduino -> app: setup()
+        arduino <-- app
+    main <-- arduino
+
+    loop
+        main -> arduino: Arduino::loop()
+            arduino -> app: loop()
+
+            alt Using millis()
+                app -> arduino: millis()
+                    arduino -> main: getSystemTick()
+                    arduino <-- main: timestamp
+                app <-- arduino: timestamp
+            end alt
+
+            alt Using delay()
+                app -> arduino: delay()
+                    arduino -> main: systemDelay()
+                        note over main
+                            The function will use millis() and
+                            steps the simulation time until the
+                            specified time is gone.
+                        end note
+                    arduino <-- main
+                app <-- arduino
+            end alt
+
+            arduino <-- app
+        main <-- arduino
+    end loop
+<-- main: status
+
+@enduml
