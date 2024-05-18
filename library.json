@@ -19,5 +19,13 @@
         "version": "~6.21.4"
     }],
     "frameworks": "*",
-    "platforms": "*"
+    "platforms": "*",
+    "build": {
+        "flags": [
+            "-I./lib/Webots/include/c",
+            "-I./lib/Webots/include/cpp",
+            "-L./lib/Webots/lib/controller",
+            "-llibController"
+        ]
+    }
 }
