@@ -6,7 +6,7 @@ note right: Shall be done before any other access to the devices.
 :Perform one single simulation time step.;
 note right: Ensures that all sensors will provide already data in setup().
 :Call the Arduino setup().;
-while (Is simulation time step is successful?) is (true)
+while (Is simulation time step successful?) is (true)
     :Handle keyboard to detect button changes.;
     :Call the Arduino loop().;
 endwhile (no)
