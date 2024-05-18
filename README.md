@@ -43,6 +43,8 @@ See details of the Webots library classes in the [Webots reference manual](https
     * ```create_webots_library.py```: Generates the Webots library under the ```/lib``` folder, derived from your local Webots installation.
     * ```copy_sounds.py```: Copies the sound files used for sound generation.
     * ```copy_webots_shared_libs.py```: Copies the Webots shared libraries to the local platformio environment specific build folder ```.pio/build/<environment>``` as post-build step. They are required by the exectuable.
+3. Integrate the following main flow to your ```main.cpp```.
+    ![MainGenericFlow](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/BlueAndi/ZumoHALWebots/master/doc/uml/MainGenericFlow.plantuml)
 
 # Used Libraries
 
