@@ -8,6 +8,10 @@
         "url": "https://github.com/BlueAndi",
         "maintainer": true
     }],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BlueAndi/ZumoHALWebots"
+    },
     "license": "MIT",
     "dependencies": [{
         "owner": "BlueAndi",
