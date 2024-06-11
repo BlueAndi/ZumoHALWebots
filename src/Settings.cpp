@@ -52,14 +52,14 @@
  * Prototypes
  *****************************************************************************/
 
-static long getFileSize(FILE* fd);
+static size_t getFileSize(FILE *fd);
 
 /******************************************************************************
  * Local Variables
  *****************************************************************************/
 
-const char*   Settings::SETTINGS_FILE_NAME = "settings.json";
-const uint8_t Settings::DATA_VERSION       = 1U;
+const char *Settings::SETTINGS_FILE_NAME = "settings.json";
+const uint8_t Settings::DATA_VERSION = 1U;
 
 /******************************************************************************
  * Public Methods
@@ -97,18 +97,18 @@ void Settings::setMaxSpeed(int16_t maxSpeed)
 
 bool Settings::loadSettings()
 {
-    bool  isSuccessful = false;
-    FILE* fd           = fopen(SETTINGS_FILE_NAME, "rb");
+    bool isSuccessful = false;
+    FILE *fd = fopen(SETTINGS_FILE_NAME, "rb");
 
     if (nullptr != fd)
     {
-        long fileSize = getFileSize(fd);
+        size_t fileSize = getFileSize(fd);
         char buffer[fileSize];
 
         if (fileSize == fread(buffer, sizeof(char), fileSize, fd))
         {
-            const size_t         JSON_DOC_SIZE = 4096U;
-            DynamicJsonDocument  jsonDoc(JSON_DOC_SIZE);
+            const size_t JSON_DOC_SIZE = 4096U;
+            DynamicJsonDocument jsonDoc(JSON_DOC_SIZE);
             DeserializationError status = deserializeJson(jsonDoc, buffer);
 
             if (DeserializationError::Ok == status)
@@ -142,15 +142,15 @@ bool Settings::loadSettings()
 
 void Settings::saveSettings()
 {
-    const size_t        JSON_DOC_SIZE = 4096U;
+    const size_t JSON_DOC_SIZE = 4096U;
     DynamicJsonDocument jsonDoc(JSON_DOC_SIZE);
-    size_t              jsonBufferSize;
+    size_t jsonBufferSize;
 
     /* Don't forget to bump the DATA_VERSION every time you modify
      * the settings!
      */
 
-    jsonDoc["version"]  = DATA_VERSION;
+    jsonDoc["version"] = DATA_VERSION;
     jsonDoc["maxSpeed"] = m_maxSpeed;
 
     jsonBufferSize = measureJsonPretty(jsonDoc); /* Size without string termination. */
@@ -160,7 +160,7 @@ void Settings::saveSettings()
 
         if (jsonBufferSize == serializeJsonPretty(jsonDoc, jsonBuffer, jsonBufferSize))
         {
-            FILE* fd = fopen(SETTINGS_FILE_NAME, "wb");
+            FILE *fd = fopen(SETTINGS_FILE_NAME, "wb");
 
             if (nullptr != fd)
             {
@@ -188,7 +188,7 @@ void Settings::saveSettings()
  *
  * @return File size in byte
  */
-static long getFileSize(FILE* fd)
+static size_t getFileSize(FILE *fd)
 {
     long current = ftell(fd); /* Remember current position. */
     long begin;
@@ -202,5 +202,5 @@ static long getFileSize(FILE* fd)
     /* Restore position. */
     (void)fseek(fd, current, SEEK_SET);
 
-    return end - begin;
+    return (size_t)(end - begin);
 }

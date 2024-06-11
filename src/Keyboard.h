@@ -64,11 +64,10 @@ public:
     /**
      * Constructs the encoders adapter and initialize it.
      */
-    Keyboard(SimTime& simTime, webots::Keyboard* keyboard) :
-        m_oldKeys(),
-        m_newKeys(),
-        m_simTime(simTime),
-        m_keyboard(keyboard)
+    Keyboard(SimTime &simTime, webots::Keyboard *keyboard) : m_oldKeys(),
+                                                             m_newKeys(),
+                                                             m_simTime(simTime),
+                                                             m_keyboard(keyboard)
     {
     }
 
@@ -242,9 +241,9 @@ private:
     /** The keys pressed during this update. */
     uint16_t m_newKeys[MAX_KEY_NUMBER];
 
-    webots::Keyboard* m_keyboard; /**< Robot keyboard */
+    SimTime &m_simTime; /**< Simulation time */
 
-    SimTime& m_simTime; /**< Simulation time */
+    webots::Keyboard *m_keyboard; /**< Robot keyboard */
 
     /**
      * Is the button pressed?
