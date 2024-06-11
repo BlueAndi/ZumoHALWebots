@@ -64,7 +64,7 @@ public:
     /**
      * Constructs the encoders adapter and initialize it.
      */
-    Keyboard(SimTime &simTime, webots::Keyboard *keyboard) :
+    Keyboard(SimTime& simTime, webots::Keyboard* keyboard) :
         m_oldKeys(),
         m_newKeys(),
         m_simTime(simTime),

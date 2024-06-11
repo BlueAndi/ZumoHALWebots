@@ -58,8 +58,8 @@ static size_t getFileSize(FILE *fd);
  * Local Variables
  *****************************************************************************/
 
-const char* Settings::SETTINGS_FILE_NAME = "settings.json";
-const uint8_t Settings::DATA_VERSION     = 1U;
+const char*   Settings::SETTINGS_FILE_NAME = "settings.json";
+const uint8_t Settings::DATA_VERSION       = 1U;
 
 /******************************************************************************
  * Public Methods
@@ -98,12 +98,12 @@ void Settings::setMaxSpeed(int16_t maxSpeed)
 bool Settings::loadSettings()
 {
     bool isSuccessful = false;
-    FILE *fd          = fopen(SETTINGS_FILE_NAME, "rb");
+    FILE* fd          = fopen(SETTINGS_FILE_NAME, "rb");
 
     if (nullptr != fd)
     {
         size_t fileSize = getFileSize(fd);
-        char buffer[fileSize];
+        char   buffer[fileSize];
 
         if (fileSize == fread(buffer, sizeof(char), fileSize, fd))
         {
@@ -150,7 +150,7 @@ void Settings::saveSettings()
      * the settings!
      */
 
-    jsonDoc["version"] = DATA_VERSION;
+    jsonDoc["version"]  = DATA_VERSION;
     jsonDoc["maxSpeed"] = m_maxSpeed;
 
     jsonBufferSize = measureJsonPretty(jsonDoc); /* Size without string termination. */
@@ -188,7 +188,7 @@ void Settings::saveSettings()
  *
  * @return File size in byte
  */
-static size_t getFileSize(FILE *fd)
+static size_t getFileSize(FILE* fd)
 {
     long current = ftell(fd); /* Remember current position. */
     long begin;
