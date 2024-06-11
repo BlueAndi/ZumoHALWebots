@@ -52,7 +52,7 @@
  * Prototypes
  *****************************************************************************/
 
-static size_t getFileSize(FILE *fd);
+static size_t getFileSize(FILE* fd);
 
 /******************************************************************************
  * Local Variables
@@ -97,8 +97,8 @@ void Settings::setMaxSpeed(int16_t maxSpeed)
 
 bool Settings::loadSettings()
 {
-    bool isSuccessful = false;
-    FILE* fd          = fopen(SETTINGS_FILE_NAME, "rb");
+    bool  isSuccessful = false;
+    FILE* fd           = fopen(SETTINGS_FILE_NAME, "rb");
 
     if (nullptr != fd)
     {
