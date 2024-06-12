@@ -202,5 +202,5 @@ static size_t getFileSize(FILE* fd)
     /* Restore position. */
     (void)fseek(fd, current, SEEK_SET);
 
-    return (size_t)(end - begin);
+    return static_cast<size_t>(end - begin);
 }
