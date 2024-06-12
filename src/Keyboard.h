@@ -242,9 +242,9 @@ private:
     /** The keys pressed during this update. */
     uint16_t m_newKeys[MAX_KEY_NUMBER];
 
-    webots::Keyboard* m_keyboard; /**< Robot keyboard */
+    SimTime &m_simTime; /**< Simulation time */
 
-    SimTime& m_simTime; /**< Simulation time */
+    webots::Keyboard *m_keyboard; /**< Robot keyboard */
 
     /**
      * Is the button pressed?
