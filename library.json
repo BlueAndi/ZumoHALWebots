@@ -16,7 +16,7 @@
     "dependencies": [{
         "owner": "BlueAndi",
         "name": "ArduinoNative",
-        "version": "~0.2.0"
+        "version": "~0.1.0"
     }, {
         "owner": "BlueAndi",
         "name": "ZumoHALInterfaces",
