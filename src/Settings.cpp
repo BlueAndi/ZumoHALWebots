@@ -52,7 +52,7 @@
  * Prototypes
  *****************************************************************************/
 
-static long getFileSize(FILE* fd);
+static size_t getFileSize(FILE* fd);
 
 /******************************************************************************
  * Local Variables
@@ -102,8 +102,8 @@ bool Settings::loadSettings()
 
     if (nullptr != fd)
     {
-        long fileSize = getFileSize(fd);
-        char buffer[fileSize];
+        size_t fileSize = getFileSize(fd);
+        char   buffer[fileSize];
 
         if (fileSize == fread(buffer, sizeof(char), fileSize, fd))
         {
@@ -188,7 +188,7 @@ void Settings::saveSettings()
  *
  * @return File size in byte
  */
-static long getFileSize(FILE* fd)
+static size_t getFileSize(FILE* fd)
 {
     long current = ftell(fd); /* Remember current position. */
     long begin;
@@ -202,5 +202,5 @@ static long getFileSize(FILE* fd)
     /* Restore position. */
     (void)fseek(fd, current, SEEK_SET);
 
-    return end - begin;
+    return static_cast<size_t>(end - begin);
 }

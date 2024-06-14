@@ -36,6 +36,7 @@ See details of the Webots library classes in the [Webots reference manual](https
 1. Add it to the _platformio.ini_ in your environment to the _lib\_deps_ section:
     ```
     lib_deps =
+        BlueAndi/ArduinoNative @ ~0.1.0
         BlueAndi/ZumoHALWebots @ ~0.1.1
     ```
 2. Add the header include search directories to the build flags.
@@ -84,6 +85,7 @@ See [minimal example](./examples/example/).
 
 | Library                                                            | Description                                                      | License    |
 | ------------------------------------------------------------------ | ---------------------------------------------------------------- | ---------- |
+| [ArduinoNative](https://github.com/BlueAndi/ArduinoNative)         | The Arduino for native environment.                              | MIT        |
 | [ArduinoJson](https://github.com/bblanchon/ArduinoJson)            | JSON library for Arduino and embedded C++. Simple and efficient. | MIT        |
 | [Webots](https://github.com/cyberbotics/webots)                    | Webots physical simulation C++ API.                              | Apache 2.0 |
 | [ZumoHALInterfaces](https://github.com/BlueAndi/ZumoHALInterfaces) | The Zumo C++ HAL interfaces.                                     | MIT        |
