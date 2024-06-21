@@ -70,11 +70,9 @@ bool Keyboard::isButtonPressed(char lowerCaseChar, char upperCaseChar) const
 {
     bool buttonPressed = false;
 
-    /* Checks if button is existing in the new values, but not the old ones.
-     * If so, it's newly pressed and true is returned.
+    /* Checks if button is existing in the recorded key values
      */
-    if ((false == arrayContains(m_oldKeys, sizeof(m_oldKeys), upperCaseChar, lowerCaseChar)) &&
-        (true == arrayContains(m_newKeys, sizeof(m_newKeys), upperCaseChar, lowerCaseChar)))
+    if (true == arrayContains(m_keys, sizeof(m_keys), upperCaseChar, lowerCaseChar))
     {
         buttonPressed = true;
     }
@@ -86,11 +84,9 @@ bool Keyboard::isButtonReleased(char lowerCaseChar, char upperCaseChar) const
 {
     bool buttonReleased = false;
 
-    /* Checks if button is existing in the new values, but not the old ones.
-     * If so, it's newly released and true is returned.
+    /* Checks if button is not existing in the recorded key values
      */
-    if ((false == arrayContains(m_newKeys, sizeof(m_newKeys), upperCaseChar, lowerCaseChar)) &&
-        (true == arrayContains(m_oldKeys, sizeof(m_oldKeys), upperCaseChar, lowerCaseChar)))
+    if (false == arrayContains(m_keys, sizeof(m_keys), upperCaseChar, lowerCaseChar))
     {
         buttonReleased = true;
     }
@@ -108,7 +104,7 @@ bool Keyboard::arrayContains(const uint16_t array[], uint16_t arraySize, char el
             (array[arrayIndex] == static_cast<uint8_t>(elemUppercase)))
         {
             elementFound = true;
-            ;
+            break;
         }
     }
 
