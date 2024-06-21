@@ -65,8 +65,7 @@ public:
      * Constructs the encoders adapter and initialize it.
      */
     Keyboard(SimTime& simTime, webots::Keyboard* keyboard) :
-        m_oldKeys(),
-        m_newKeys(),
+        m_keys(),
         m_simTime(simTime),
         m_keyboard(keyboard)
     {
@@ -85,25 +84,19 @@ public:
      */
     void getPressedButtons()
     {
-        /* Copying the new values into the old values array. */
-        for (uint8_t arrayIndex = 0; arrayIndex < (sizeof(m_oldKeys) / sizeof(*m_oldKeys)); ++arrayIndex)
-        {
-            m_oldKeys[arrayIndex] = m_newKeys[arrayIndex];
-        }
-
-        /* Getting the new values. Currently the limit of the simulation is seven
+        /* Getting the new key values. Currently the limit of the simulation is seven
          * keypresses that can be detected simultaniously.
          */
-        for (uint8_t keyIndex = 0; keyIndex < (sizeof(m_oldKeys) / sizeof(*m_oldKeys)); ++keyIndex)
+        for (uint8_t keyIndex = 0; keyIndex < (sizeof(m_keys) / sizeof(*m_keys)); ++keyIndex)
         {
-            m_newKeys[keyIndex] = m_keyboard->getKey();
+            m_keys[keyIndex] = m_keyboard->getKey();
         }
     }
 
     /**
-     * Checks weather the button A was pressed since the last update.
+     * Checks weather the button A was pressed..
      *
-     * @return Return true if button A was pressed since the last update
+     * @return Return true if button A was pressed.
      */
     bool buttonAPressed()
     {
@@ -111,9 +104,9 @@ public:
     }
 
     /**
-     * Checks weather the button A was released since the last update.
+     * Checks weather the button A is released.
      *
-     * @return Return true if button A was released since the last update
+     * @return Return true if button A is released.
      */
     bool buttonAReleased()
     {
@@ -121,9 +114,9 @@ public:
     }
 
     /**
-     * Checks weather the button B was pressed since the last update.
+     * Checks weather the button B was pressed..
      *
-     * @return Return true if button B was pressed since the last update
+     * @return Return true if button B was pressed.
      */
     bool buttonBPressed()
     {
@@ -131,9 +124,9 @@ public:
     }
 
     /**
-     * Checks weather the button B was released since the last update.
+     * Checks weather the button B was released..
      *
-     * @return Return true if button B was released since the last update
+     * @return Return true if button B was released.
      */
     bool buttonBReleased()
     {
@@ -141,9 +134,9 @@ public:
     }
 
     /**
-     * Checks weather the button C was pressed since the last update.
+     * Checks weather the button C was pressed..
      *
-     * @return Return true if button C was pressed since the last update
+     * @return Return true if button C was pressed.
      */
     bool buttonCPressed()
     {
@@ -151,9 +144,9 @@ public:
     }
 
     /**
-     * Checks weather the button C was released since the last update.
+     * Checks weather the button C was released..
      *
-     * @return Return true if button C was released since the last update
+     * @return Return true if button C was released.
      */
     bool buttonCReleased()
     {
@@ -236,11 +229,8 @@ private:
     /** The maximum number of keys pressed simultaniously, that the simulation can process. */
     static const uint8_t MAX_KEY_NUMBER = 7;
 
-    /** The keys presses during the last update. */
-    uint16_t m_oldKeys[MAX_KEY_NUMBER];
-
     /** The keys pressed during this update. */
-    uint16_t m_newKeys[MAX_KEY_NUMBER];
+    uint16_t m_keys[MAX_KEY_NUMBER];
 
     SimTime &m_simTime; /**< Simulation time */
 
