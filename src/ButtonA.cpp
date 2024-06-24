@@ -63,11 +63,6 @@ bool ButtonA::isPressed()
     return m_keyboard.buttonAPressed();
 }
 
-void ButtonA::waitForRelease()
-{
-    m_keyboard.waitForReleaseA();
-}
-
 /******************************************************************************
  * Protected Methods
  *****************************************************************************/
