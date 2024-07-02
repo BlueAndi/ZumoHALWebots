@@ -64,7 +64,7 @@ public:
      *
      * @param[in] keyboard  The robot keyboard.
      */
-    ButtonC(Keyboard& keyboard) : IButton(), m_keyboard(keyboard)
+    ButtonC(Keyboard &keyboard) : IButton(), m_keyboard(keyboard)
     {
     }
 
@@ -82,13 +82,8 @@ public:
      */
     bool isPressed() final;
 
-    /**
-     * Wait until button is released.
-     */
-    void waitForRelease() final;
-
 private:
-    Keyboard& m_keyboard; /**< Robot keyboard */
+    Keyboard &m_keyboard; /**< Robot keyboard */
 
     /* Default constructor not allowed. */
     ButtonC();
