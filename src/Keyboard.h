@@ -94,7 +94,7 @@ public:
     }
 
     /**
-     * Checks weather the button A was pressed..
+     * Checks weather the button A was pressed.
      *
      * @return Return true if button A was pressed.
      */
@@ -114,7 +114,7 @@ public:
     }
 
     /**
-     * Checks weather the button B was pressed..
+     * Checks weather the button B was pressed.
      *
      * @return Return true if button B was pressed.
      */
@@ -124,7 +124,7 @@ public:
     }
 
     /**
-     * Checks weather the button B was released..
+     * Checks weather the button B was released.
      *
      * @return Return true if button B was released.
      */
@@ -134,7 +134,7 @@ public:
     }
 
     /**
-     * Checks weather the button C was pressed..
+     * Checks weather the button C was pressed.
      *
      * @return Return true if button C was pressed.
      */
@@ -144,7 +144,7 @@ public:
     }
 
     /**
-     * Checks weather the button C was released..
+     * Checks weather the button C was released.
      *
      * @return Return true if button C was released.
      */
