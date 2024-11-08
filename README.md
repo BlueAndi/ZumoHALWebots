@@ -36,14 +36,14 @@ See details of the Webots library classes in the [Webots reference manual](https
 1. Add it to the _platformio.ini_ in your environment to the _lib\_deps_ section:
     ```
     lib_deps =
-        BlueAndi/ArduinoNative @ ~0.1.0
-        BlueAndi/ZumoHALWebots @ ~0.1.1
+        BlueAndi/ZumoHALWebots @ ~1.1.0
     ```
 2. Add the header include search directories to the build flags.
     ```
     build_flags =
         -I./lib/Webots/include/c
         -I./lib/Webots/include/cpp
+        -D _USE_MATH_DEFINES
     ```
 3. Add to your platformio environment the following scripts.
     ```

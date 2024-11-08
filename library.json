@@ -1,6 +1,6 @@
 {
     "name": "ZumoHALWebots",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "Zumo C++ hardware abstraction layer for the Webots simulation.",
     "authors": [{
         "name": "Andreas Merkle",
@@ -16,15 +16,15 @@
     "dependencies": [{
         "owner": "BlueAndi",
         "name": "ArduinoNative",
-        "version": "~0.1.0"
+        "version": "~0.2.1"
     }, {
         "owner": "BlueAndi",
         "name": "ZumoHALInterfaces",
-        "version": "~1.0.0"
+        "version": "~1.0.2"
     }, {
         "owner": "bblanchon",
         "name": "ArduinoJson",
-        "version": "~6.21.4"
+        "version": "~6.21.5"
     }],
     "frameworks": "*",
     "platforms": "*",
