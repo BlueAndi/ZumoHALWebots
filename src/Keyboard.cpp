@@ -1,6 +1,6 @@
 /* MIT License
  *
- * Copyright (c) 2023 - 2024 Andreas Merkle <web@blue-andi.de>
+ * Copyright (c) 2023 - 2025 Andreas Merkle <web@blue-andi.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -70,8 +70,7 @@ bool Keyboard::isButtonPressed(char lowerCaseChar, char upperCaseChar) const
 {
     bool buttonPressed = false;
 
-    /* Checks if button is existing in the recorded key values
-     */
+    /* Checks if button is existing in the recorded key values. */
     if (true == arrayContains(m_keys, sizeof(m_keys), upperCaseChar, lowerCaseChar))
     {
         buttonPressed = true;
@@ -84,8 +83,7 @@ bool Keyboard::isButtonReleased(char lowerCaseChar, char upperCaseChar) const
 {
     bool buttonReleased = false;
 
-    /* Checks if button is not existing in the recorded key values
-     */
+    /* Checks if button is not existing in the recorded key values. */
     if (false == arrayContains(m_keys, sizeof(m_keys), upperCaseChar, lowerCaseChar))
     {
         buttonReleased = true;
