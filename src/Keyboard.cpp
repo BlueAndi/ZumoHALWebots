@@ -70,8 +70,7 @@ bool Keyboard::isButtonPressed(char lowerCaseChar, char upperCaseChar) const
 {
     bool buttonPressed = false;
 
-    /* Checks if button is existing in the recorded key values
-     */
+    /* Checks if button is existing in the recorded key values. */
     if (true == arrayContains(m_keys, sizeof(m_keys), upperCaseChar, lowerCaseChar))
     {
         buttonPressed = true;
@@ -84,8 +83,7 @@ bool Keyboard::isButtonReleased(char lowerCaseChar, char upperCaseChar) const
 {
     bool buttonReleased = false;
 
-    /* Checks if button is not existing in the recorded key values
-     */
+    /* Checks if button is not existing in the recorded key values. */
     if (false == arrayContains(m_keys, sizeof(m_keys), upperCaseChar, lowerCaseChar))
     {
         buttonReleased = true;
