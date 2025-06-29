@@ -13,6 +13,7 @@ Hardware abstraction layer for the Pololu Zumo robot (see <https://www.pololu.co
   - [Detail](#detail)
 - [How to integrate the library?](#how-to-integrate-the-library)
   - [Example with recommended flow](#example-with-recommended-flow)
+- [Interface Description](#interface-description)
 - [Requirements to your application](#requirements-to-your-application)
   - [General](#general)
   - [Buttons](#buttons)
@@ -73,6 +74,10 @@ See details of the Webots library classes in the [Webots reference manual](https
 See [minimal example](./examples/example/).
 
 ![ExampleMainFlow](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/BlueAndi/ZumoHALWebots/master/doc/uml/ExampleMainFlow.plantuml)
+
+## Interface Description
+
+See [interface description of latest version](https://blueandi.github.io/ZumoHALWebots/).
 
 ## Requirements to your application
 
