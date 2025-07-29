@@ -98,7 +98,7 @@ void Settings::setMaxSpeed(int16_t maxSpeed)
 bool Settings::loadSettings()
 {
     bool  isSuccessful = false;
-    FILE* fd           = fopen(SETTINGS_FILE_NAME, "rb");
+    FILE* fd           = fopen(m_settingsPath, "rb");
 
     if (nullptr != fd)
     {
@@ -160,7 +160,7 @@ void Settings::saveSettings()
 
         if (jsonBufferSize == serializeJsonPretty(jsonDoc, jsonBuffer, jsonBufferSize))
         {
-            FILE* fd = fopen(SETTINGS_FILE_NAME, "wb");
+            FILE* fd = fopen(m_settingsPath, "wb");
 
             if (nullptr != fd)
             {

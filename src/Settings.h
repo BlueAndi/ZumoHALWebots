@@ -60,8 +60,9 @@ public:
     /**
      * Constructs the settings adapter.
      */
-    Settings() : ISettings(), m_maxSpeed(DEFAULT_MAX_SPEED)
+    Settings() : ISettings(), m_path{0}, m_maxSpeed(DEFAULT_MAX_SPEED)
     {
+        setPath(SETTINGS_FILE_NAME);
     }
 
     /**
@@ -69,6 +70,27 @@ public:
      */
     ~Settings()
     {
+    }
+
+    /**
+     * Get the settings path.
+     *
+     * @return Settings path.
+     */
+    const char* getPath() const
+    {
+        return m_settingsPath;
+    }
+
+    /**
+     * Set the settings path.
+     *
+     * @param[in] path  Settings path.
+     */
+    void setPath(const char* path)
+    {
+        strncpy(m_settingsPath, path, MAX_PATH_LENGTH - 1U);
+        m_settingsPath[MAX_PATH_LENGTH - 1U] = '\0'; /* Ensure null termination. */
     }
 
     /**
@@ -112,7 +134,13 @@ private:
      */
     static const int16_t DEFAULT_MAX_SPEED = 0;
 
-    int16_t m_maxSpeed; /**< Max. speed in steps/s. */
+    /**
+     * Max. settings path length.
+     */
+    static const size_t MAX_PATH_LENGTH = 256U;
+
+    char    m_settingsPath[MAX_PATH_LENGTH]; /**< Path to the settings file. */
+    int16_t m_maxSpeed;                      /**< Max. speed in steps/s. */
 
     /**
      * Load settings from file.
