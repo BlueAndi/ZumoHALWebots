@@ -60,7 +60,7 @@ public:
     /**
      * Constructs the settings adapter.
      */
-    Settings() : ISettings(), m_path{0}, m_maxSpeed(DEFAULT_MAX_SPEED)
+    Settings() : ISettings(), m_settingsPath{0}, m_maxSpeed(DEFAULT_MAX_SPEED)
     {
         setPath(SETTINGS_FILE_NAME);
     }
@@ -77,21 +77,14 @@ public:
      *
      * @return Settings path.
      */
-    const char* getPath() const
-    {
-        return m_settingsPath;
-    }
+    const char* getPath() const;
 
     /**
      * Set the settings path.
      *
      * @param[in] path  Settings path.
      */
-    void setPath(const char* path)
-    {
-        strncpy(m_settingsPath, path, MAX_PATH_LENGTH - 1U);
-        m_settingsPath[MAX_PATH_LENGTH - 1U] = '\0'; /* Ensure null termination. */
-    }
+    void setPath(const char* path);
 
     /**
      * Initialize the settings.

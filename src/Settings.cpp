@@ -35,6 +35,7 @@
 #include "Settings.h"
 #include <ArduinoJson.h>
 #include <stdio.h>
+#include <string.h>
 
 /******************************************************************************
  * Compiler Switches
@@ -64,6 +65,17 @@ const uint8_t Settings::DATA_VERSION       = 1U;
 /******************************************************************************
  * Public Methods
  *****************************************************************************/
+
+const char* Settings::getPath() const
+{
+    return m_settingsPath;
+}
+
+void Settings::setPath(const char* path)
+{
+    strncpy(m_settingsPath, path, MAX_PATH_LENGTH - 1U);
+    m_settingsPath[MAX_PATH_LENGTH - 1U] = '\0'; /* Ensure null termination. */
+}
 
 void Settings::init()
 {
