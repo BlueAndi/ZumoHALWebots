@@ -18,7 +18,9 @@
         "name": "ArduinoNative",
         "version": "~0.2.1"
     }, {
-        "name": "https://github.com/BlueAndi/ZumoHALInterfaces#feature/receiver"
+        "owner": "BlueAndi",
+        "name": "ZumoHALInterfaces",
+        "version": "~1.2.0"
     }, {
         "owner": "bblanchon",
         "name": "ArduinoJson",
