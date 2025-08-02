@@ -85,10 +85,16 @@ package "HAL Interfaces" as halInterfaces {
         + {abstract} getBrightnessLevels() : uint8_t
     }
 
+    interface "IReceiver" as iReceiver {
+        + {abstract} setChannel(channel : int32_t) : void
+        + {abstract} receive(data : void*, size : size_t) const : size_t
+        + {abstract} available() : int
+    }
+
     interface "ISender" as iSender {
         + {abstract} setChannel(channel : int32_t) : void
-        + {abstract} send(data : const void*, size : size_t) const : void
-        + {abstract} send(str : const char*) : void
+        + {abstract} send(data : const void*, size : size_t) const : sizet_t
+        + {abstract} send(str : const char*) : size_t
     }
 
     interface "ISettings" as iSettings {
@@ -115,7 +121,8 @@ package "HAL Webots" as hal {
     class LineSensors
     class Motors
     class ProximitySensors
-    class Sender <<unused>>
+    class Receiver
+    class Sender
     class Settings
     class SimTime
     class WebotsSerialDrv
@@ -133,6 +140,7 @@ package "HAL Webots" as hal {
     iLineSensors <|... LineSensors: <<realize>>
     iMotors <|... Motors: <<realize>>
     iProximitySensors <|... ProximitySensors: <<realize>>
+    iReceiver <|... Receiver: <<realize>>
     iSender <|... Sender: <<realize>>
     iSettings <|... Settings: <<realize>>
 
@@ -185,11 +193,11 @@ LineSensors ----> webotsEmitter
 LineSensors ----> webotsDistanceSensor
 Motors *----> "2" webotsMotor
 ProximitySensors *----> "2" webotsDistanceSensor
-Sender ----> webotsEmitter
+Receiver -> webotsReceiver
+Sender -> webotsEmitter
 SimTime ----> webotsRobot
-WebotsSerialDrv ----> webotsEmitter
-WebotsSerialDrv ----> webotsReceiver
-
+WebotsSerialDrv ----> Receiver
+WebotsSerialDrv ----> Sender
 Settings ....> DynamicJsonDocument: <<use>>
 
 note bottom of hal
