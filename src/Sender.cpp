@@ -73,8 +73,10 @@ size_t Sender::send(const void* data, size_t size) const
 
     if (nullptr != m_emitter)
     {
+        const int32_t SUCCESS = 1;
+
         /* This function returns 1 if the message was placed in the sending queue, 0 if the sending queue was full. */
-        if (1 == m_emitter->send(data, size))
+        if (SUCCESS == m_emitter->send(data, size))
         {
             sent = size;
         }
@@ -89,10 +91,11 @@ size_t Sender::send(const char* str) const
 
     if ((nullptr != m_emitter) && (nullptr != str))
     {
-        size_t length = strlen(str);
+        const int32_t SUCCESS = 1;
+        size_t        length  = strlen(str);
 
         /* This function returns 1 if the message was placed in the sending queue, 0 if the sending queue was full. */
-        if (1 == m_emitter->send(str, length))
+        if (SUCCESS == m_emitter->send(str, length))
         {
             sent = length;
         }

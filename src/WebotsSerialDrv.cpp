@@ -201,10 +201,7 @@ void WebotsSerialDrv::println(int32_t value)
 
 size_t WebotsSerialDrv::write(const uint8_t* buffer, size_t length)
 {
-    int32_t       result  = m_sender.send(buffer, length);
-    const int32_t SUCCESS = 1;
-
-    return (SUCCESS == result) ? length : 0;
+    return m_sender.send(buffer, length);
 }
 
 int WebotsSerialDrv::available() const
