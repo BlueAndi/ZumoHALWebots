@@ -67,20 +67,38 @@ void Sender::setChannel(int32_t channel)
     }
 }
 
-void Sender::send(const void* data, size_t size) const
+size_t Sender::send(const void* data, size_t size) const
 {
+    size_t sent = 0U;
+
     if (nullptr != m_emitter)
     {
-        m_emitter->send(data, size);
+        /* This function returns 1 if the message was placed in the sending queue, 0 if the sending queue was full. */
+        if (1 == m_emitter->send(data, size))
+        {
+            sent = size;
+        }
     }
+
+    return sent;
 }
 
-void Sender::send(const char* str) const
+size_t Sender::send(const char* str) const
 {
-    if (nullptr != m_emitter)
+    size_t sent = 0U;
+
+    if ((nullptr != m_emitter) && (nullptr != str))
     {
-        m_emitter->send(str, strlen(str));
+        size_t length = strlen(str);
+
+        /* This function returns 1 if the message was placed in the sending queue, 0 if the sending queue was full. */
+        if (1 == m_emitter->send(str, length))
+        {
+            sent = length;
+        }
     }
+
+    return sent;
 }
 
 /******************************************************************************

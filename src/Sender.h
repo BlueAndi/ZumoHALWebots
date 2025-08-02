@@ -83,22 +83,26 @@ public:
      *
      * @param[in] channel   The channel which to use.
      */
-    void setChannel(int32_t channel) final;
+    void setChannel(int32_t channel) override;
 
     /**
      * Sends data to the configured channel.
      *
-     * @param[in] data  Data buffer
+     * @param[in] data  Data buffer.
      * @param[in] size  Data buffer size in bytes.
+     * 
+     * @return Number of bytes sent.
      */
-    void send(const void* data, size_t size) const final;
+    size_t send(const void* data, size_t size) const override;
 
     /**
      * Sends string to the configured channel.
      *
      * @param[in] str   String which to send.
+     * 
+     * @return Number of bytes sent.
      */
-    void send(const char* str) const final;
+    size_t send(const char* str) const override;
 
 private:
     webots::Emitter* m_emitter; /**< The emitter on the simulated robot. */
