@@ -25,7 +25,7 @@
     DESCRIPTION
 *******************************************************************************/
 /**
- * @brief  Sender realization
+ * @brief  Receiver realization
  * @author Andreas Merkle <web@blue-andi.de>
  *
  * @addtogroup HALSim
@@ -33,8 +33,8 @@
  * @{
  */
 
-#ifndef SENDER_H
-#define SENDER_H
+#ifndef RECEIVER_H
+#define RECEIVER_H
 
 /******************************************************************************
  * Compile Switches
@@ -43,9 +43,9 @@
 /******************************************************************************
  * Includes
  *****************************************************************************/
-#include "ISender.h"
+#include "IReceiver.h"
 
-#include <webots/Emitter.hpp>
+#include <webots/Receiver.hpp>
 
 /******************************************************************************
  * Macros
@@ -56,64 +56,63 @@
  *****************************************************************************/
 
 /**
- * This class provides a sender to communicate with other robots or the supervisor
+ * This class provides a receiver to communicate with other robots or the supervisor
  * in the simulation.
  */
-class Sender : public ISender
+class Receiver : public IReceiver
 {
 public:
     /**
-     * Constructs the sender adapter.
+     * Constructs the receiver adapter.
      *
-     * @param[in] emitter   The emitter of the simulated robot.
+     * @param[in] receiver   The receiver of the simulated robot.
      */
-    Sender(webots::Emitter* emitter) : ISender(), m_emitter(emitter)
+    Receiver(webots::Receiver* receiver) : IReceiver(), m_receiver(receiver), m_dataRemains(0U)
     {
     }
 
     /**
-     * Destroys the sender adapter.
+     * Destroys the receiver adapter.
      */
-    ~Sender()
+    ~Receiver()
     {
     }
 
     /**
-     * Set channel which to send data to.
+     * Set channel which to receive data from.
      *
      * @param[in] channel   The channel which to use.
      */
     void setChannel(int32_t channel) override;
 
     /**
-     * Sends data to the configured channel.
+     * Receives data from the configured channel.
      *
      * @param[in] data  Data buffer.
      * @param[in] size  Data buffer size in bytes.
      * 
-     * @return Number of bytes sent.
+     * @return Number of bytes read from stream.
      */
-    size_t send(const void* data, size_t size) const override;
+    size_t receive(void* data, size_t size) override;
 
     /**
-     * Sends string to the configured channel.
+     * Check if any data has been received.
      *
-     * @param[in] str   String which to send.
-     * 
-     * @return Number of bytes sent.
+     * @return Number of available bytes.
      */
-    size_t send(const char* str) const override;
+    int available() const override;
 
 private:
-    webots::Emitter* m_emitter; /**< The emitter on the simulated robot. */
+    webots::Receiver* m_receiver;    /**< The receiver on the simulated robot. */
+    size_t            m_dataRemains; /**< Number of bytes which are remaining in head packet. */
 
     /* Default constructor not allowed. */
-    Sender();
+    Receiver();
 };
 
 /******************************************************************************
  * Functions
  *****************************************************************************/
 
-#endif /* SENDER_H */
+#endif /* RECEIVER_H */
 /** @} */

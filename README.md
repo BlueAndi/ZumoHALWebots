@@ -41,7 +41,7 @@ See details of the Webots library classes in the [Webots reference manual](https
 
     ```text
     lib_deps =
-        BlueAndi/ZumoHALWebots @ ~1.3.1
+        BlueAndi/ZumoHALWebots @ ~1.4.0
     ```
 
 2. Add the header include search directories to the build flags.

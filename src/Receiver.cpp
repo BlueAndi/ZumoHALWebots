@@ -25,14 +25,14 @@
     DESCRIPTION
 *******************************************************************************/
 /**
- * @brief  Sender realization
+ * @brief  Receiver realization
  * @author Andreas Merkle <web@blue-andi.de>
  */
 
 /******************************************************************************
  * Includes
  *****************************************************************************/
-#include "Sender.h"
+#include "Receiver.h"
 #include <string.h>
 
 /******************************************************************************
@@ -59,49 +59,94 @@
  * Public Methods
  *****************************************************************************/
 
-void Sender::setChannel(int32_t channel)
+void Receiver::setChannel(int32_t channel)
 {
-    if (nullptr != m_emitter)
+    if (nullptr != m_receiver)
     {
-        m_emitter->setChannel(channel);
+        m_receiver->setChannel(channel);
     }
 }
 
-size_t Sender::send(const void* data, size_t size) const
+size_t Receiver::receive(void* data, size_t size)
 {
-    size_t sent = 0U;
+    size_t read = 0U;
 
-    if (nullptr != m_emitter)
+    /* Attention, calling the getData() or getDataSize() is illegal in case the
+     * queue is empty!
+     */
+    if (0 < m_receiver->getQueueLength())
     {
-        const int32_t SUCCESS = 1;
+        const uint8_t* message     = static_cast<const uint8_t*>(m_receiver->getData());
+        int32_t        messageSize = m_receiver->getDataSize();
 
-        /* This function returns 1 if the message was placed in the sending queue, 0 if the sending queue was full. */
-        if (SUCCESS == m_emitter->send(data, size))
+        /* If in the last read not all data was read, return the remaining bytes. */
+        if (0U < m_dataRemains)
         {
-            sent = size;
+            /* Partial read? */
+            if (m_dataRemains > size)
+            {
+                read = size;
+            }
+            /* Read all. */
+            else
+            {
+                read = m_dataRemains;
+            }
+
+            (void)memcpy(data, &message[messageSize - m_dataRemains], read);
+            m_dataRemains -= read;
+        }
+        else
+        {
+            /* Partial read? */
+            if (messageSize > size)
+            {
+                read = size;
+            }
+            /* Read all. */
+            else
+            {
+                read = messageSize;
+            }
+
+            (void)memcpy(data, message, read);
+            m_dataRemains = messageSize - read;
+        }
+
+        /* If the complete head packet is read, it will be thrown away. */
+        if (0U == m_dataRemains)
+        {
+            m_receiver->nextPacket();
         }
     }
 
-    return sent;
+    return read;
 }
 
-size_t Sender::send(const char* str) const
+int Receiver::available() const
 {
-    size_t sent = 0U;
+    int32_t dataSize = 0;
 
-    if ((nullptr != m_emitter) && (nullptr != str))
+    /* If in the last read not all data was read, return the remaining bytes. */
+    if (0U < m_dataRemains)
     {
-        const int32_t SUCCESS = 1;
-        size_t        length  = strlen(str);
-
-        /* This function returns 1 if the message was placed in the sending queue, 0 if the sending queue was full. */
-        if (SUCCESS == m_emitter->send(str, length))
-        {
-            sent = length;
-        }
+        dataSize = m_dataRemains;
+    }
+    /* Otherwise return the size of the current head packet.
+     * Attention, calling the getDataSize() is illegal in case the queue is
+     * empty!
+     */
+    else if (0 < m_receiver->getQueueLength())
+    {
+        dataSize = m_receiver->getDataSize();
+    }
+    else
+    {
+        /* Nothing to do. */
+        ;
     }
 
-    return sent;
+    return dataSize;
 }
 
 /******************************************************************************
