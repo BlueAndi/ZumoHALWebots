@@ -35,6 +35,7 @@
 #include "Settings.h"
 #include <ArduinoJson.h>
 #include <stdio.h>
+#include <string.h>
 
 /******************************************************************************
  * Compiler Switches
@@ -64,6 +65,17 @@ const uint8_t Settings::DATA_VERSION       = 1U;
 /******************************************************************************
  * Public Methods
  *****************************************************************************/
+
+const char* Settings::getPath() const
+{
+    return m_settingsPath;
+}
+
+void Settings::setPath(const char* path)
+{
+    strncpy(m_settingsPath, path, MAX_PATH_LENGTH - 1U);
+    m_settingsPath[MAX_PATH_LENGTH - 1U] = '\0'; /* Ensure null termination. */
+}
 
 void Settings::init()
 {
@@ -98,7 +110,7 @@ void Settings::setMaxSpeed(int16_t maxSpeed)
 bool Settings::loadSettings()
 {
     bool  isSuccessful = false;
-    FILE* fd           = fopen(SETTINGS_FILE_NAME, "rb");
+    FILE* fd           = fopen(m_settingsPath, "rb");
 
     if (nullptr != fd)
     {
@@ -160,7 +172,7 @@ void Settings::saveSettings()
 
         if (jsonBufferSize == serializeJsonPretty(jsonDoc, jsonBuffer, jsonBufferSize))
         {
-            FILE* fd = fopen(SETTINGS_FILE_NAME, "wb");
+            FILE* fd = fopen(m_settingsPath, "wb");
 
             if (nullptr != fd)
             {
