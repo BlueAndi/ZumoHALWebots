@@ -193,11 +193,11 @@ LineSensors ----> webotsEmitter
 LineSensors ----> webotsDistanceSensor
 Motors *----> "2" webotsMotor
 ProximitySensors *----> "2" webotsDistanceSensor
-Receiver -> webotsReceiver
-Sender -> webotsEmitter
+Receiver ----> webotsReceiver
+Sender ----> webotsEmitter
 SimTime ----> webotsRobot
-WebotsSerialDrv ----> Receiver
-WebotsSerialDrv ----> Sender
+WebotsSerialDrv ---> Receiver
+WebotsSerialDrv ---> Sender
 Settings ....> DynamicJsonDocument: <<use>>
 
 note bottom of hal
