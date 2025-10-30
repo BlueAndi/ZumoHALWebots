@@ -52,6 +52,7 @@
 #include <IMotors.h>
 #include <ILed.h>
 #include <ISettings.h>
+#include <IPower.h>
 
 #ifdef DEBUG_ODOMETRY
 #include <ISender.h>
@@ -167,6 +168,13 @@ public:
      * @return Settings
      */
     virtual ISettings& getSettings() = 0;
+
+    /**
+     * Get the power interface.
+     * 
+     * @return IPower interface provider.
+     */
+    virtual IPower& getPower() = 0;
 
 #ifdef DEBUG_ODOMETRY
 

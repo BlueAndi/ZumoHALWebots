@@ -107,7 +107,8 @@ Board::Board() :
     m_ledRed(m_robot.getLED(RobotDeviceNames::LED_RED_NAME)),
     m_ledYellow(m_robot.getLED(RobotDeviceNames::LED_YELLOW_NAME)),
     m_ledGreen(m_robot.getLED(RobotDeviceNames::LED_GREEN_NAME)),
-    m_settings()
+    m_settings(),
+    m_power()
 {
 }
 
