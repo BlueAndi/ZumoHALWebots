@@ -56,6 +56,7 @@
 #include <LedYellow.h>
 #include <LedGreen.h>
 #include <Settings.h>
+#include <Power.h>
 
 #include <math.h>
 #include <webots/Robot.hpp>
@@ -215,6 +216,16 @@ public:
     }
 
     /**
+     * Get the power interface.
+     * 
+     * @return power interface
+     */
+    IPower& getPower() final
+    {
+        return m_power;
+    }
+
+    /**
      * Process actuators and sensors.
      */
     void process() final
@@ -268,6 +279,9 @@ private:
 
     /** Settings */
     Settings m_settings;
+
+    /** Power interface provider- */
+    Power m_power;
 
     /**
      * Constructs the concrete board.
