@@ -36,15 +36,19 @@ import platform
 # Variables
 ################################################################################
 
-src_path_include_c      = os.getenv('WEBOTS_HOME') + '/include/controller/c'
-src_path_include_cpp    = os.getenv('WEBOTS_HOME') + '/include/controller/cpp'
-src_path_source         = os.getenv('WEBOTS_HOME') + '/src/controller/cpp'
-src_path_lib            = os.getenv('WEBOTS_HOME') + '/lib/controller/libController'
-
 OS_PLATFORM_TYPE_WIN = "Windows"
 OS_PLATFORM_TYPE_LINUX = "Linux"
 OS_PLATFORM_TYPE_MACOS = "Darwin"
 OS_PLATFORM_TYPE = platform.system()
+
+# On macOS Webots ships as a .app bundle; all paths live under Contents/
+_CONTENTS = '/Contents' if OS_PLATFORM_TYPE == OS_PLATFORM_TYPE_MACOS else ''
+_WEBOTS_HOME = os.getenv('WEBOTS_HOME') + _CONTENTS
+
+src_path_include_c      = _WEBOTS_HOME + '/include/controller/c'
+src_path_include_cpp    = _WEBOTS_HOME + '/include/controller/cpp'
+src_path_source         = _WEBOTS_HOME + '/src/controller/cpp'
+src_path_lib            = _WEBOTS_HOME + '/lib/controller/libController'
 
 #  Add correct file extension for the platform.
 if OS_PLATFORM_TYPE == OS_PLATFORM_TYPE_WIN:

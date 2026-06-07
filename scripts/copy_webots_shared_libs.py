@@ -57,8 +57,8 @@ if OS_PLATFORM_TYPE == OS_PLATFORM_TYPE_WIN:
 elif OS_PLATFORM_TYPE == OS_PLATFORM_TYPE_MACOS:
 
     SHARED_FILES_LIST = [
-        '/lib/controller/libController.dylib',
-        '/lib/controller/libCppController.dylib'
+        '/Contents/lib/controller/libController.dylib',
+        '/Contents/lib/controller/libCppController.dylib'
     ]
 
 elif OS_PLATFORM_TYPE == OS_PLATFORM_TYPE_LINUX:
